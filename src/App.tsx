@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { Heading } from '@chakra-ui/react';
 
-function App() {
-  return (
-    <h1>Hello medical</h1>
-  );
-}
+const App:FC = () => (
+  <div>
+    <Heading as="h1">Hello medical</Heading>
+  </div>
+);
 
 export default App;
