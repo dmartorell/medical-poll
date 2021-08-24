@@ -49,10 +49,13 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
                 <FaUserCircle color={isInvalidInput ? 'red' : ''} />
               </InputLeftElement>
               <Input
+                errorBorderColor="red.500"
+                placeholder={isInvalidInput ? 'Introduce código' : ''}
+                _placeholder={{ color: 'red.500' }}
+                isInvalid={isInvalidInput}
                 ref={textInput}
                 onFocus={() => setIsInvalidInput(false)}
-                isInvalid={isInvalidInput}
-                errorBorderColor="red.500"
+                fontSize="sm"
                 type="text"
                 w="60%"
                 minW="300px"
