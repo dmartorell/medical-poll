@@ -9,12 +9,12 @@ type Props = {
 const GoodBye: FC<Props> = ({ children }) => (
   <>
     <Card
-      title="Valoración Emocional Post-UCI Covid19"
-      content="¡Hasta pronto! Muchas gracias por tu respuesta.
+      title="¡Hasta Pronto!"
+      content="Muchas gracias por tu respuesta.
       Si tienes alguna duda, quieres hacer un comentario, o a lo largo de este año quieres volver a contactar con nosotros no dudes en escribir a Sol Fernández (msfernandez@tauli.cat) o a Guillem Navarra (gnavarra@tauli.cat).
-      Estamos aquí para acompañarte en tu proceso de recuperación. "
-      imageSrc="src/assets/icons/emotion.png"
-      imageAlt="emotion icon"
+      Estamos aquí para acompañarte en tu proceso de recuperación."
+      imageSrc="src/assets/icons/hug.png"
+      imageAlt="hug icon"
     >
       {children}
     </Card>

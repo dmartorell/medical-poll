@@ -5,8 +5,9 @@ import {
 } from '@chakra-ui/react';
 import Welcome from './components/Welcome';
 import GoodBye from './components/GoodBye';
-
+import AvatarGroup from './components/AvatarGroup';
 import UserInfoInput from './components/UserInfoInput';
+import professionals from './assets/mockData/professionals';
 
 const App:FC = () => {
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
@@ -14,7 +15,11 @@ const App:FC = () => {
     <VStack justifyContent="center" backgroundColor="twitter.50" height="100vh">
       {
         userInfo.consent === 'false'
-          ? <GoodBye />
+          ? (
+            <GoodBye>
+              <AvatarGroup professionalsList={professionals} />
+            </GoodBye>
+          )
           : (
             <Welcome>
               <UserInfoInput setUserInfo={setUserInfo} />

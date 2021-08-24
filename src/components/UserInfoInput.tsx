@@ -28,7 +28,7 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
       <FormControl id="userInfo">
         <Stack spacing={8}>
           <Box>
-            <FormLabel fontSize={17}>
+            <FormLabel fontSize={{ sm: 14, lg: 17 }}>
               Código de participante:
             </FormLabel>
             <InputGroup>
@@ -44,6 +44,8 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
                 isInvalid={isInvalidInput}
                 errorBorderColor="red.500"
                 type="text"
+                w="60%"
+                minW="300px"
                 onChange={({ target }) => setCode(target.value)}
                 value={code}
                 variant="outline"
@@ -52,12 +54,12 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
             </InputGroup>
           </Box>
           <Box>
-            <FormLabel fontSize={17}>
+            <FormLabel fontSize={{ sm: 14, lg: 17 }}>
               Confirmo mi participación voluntaria en este proyecto:
             </FormLabel>
-            <RadioGroup defaultValue="true" onChange={(value:string) => setConsent(value)}>
+            <RadioGroup colorScheme="blue" size="sm" defaultValue="true" onChange={(value:string) => setConsent(value)}>
               <VStack spacing={1} alignItems="start">
-                <Radio colorScheme="blue" value="true">Sí, confirmo mi participación</Radio>
+                <Radio value="true">Sí, confirmo mi participación</Radio>
                 <Radio value="false">No, no quiero participar</Radio>
               </VStack>
             </RadioGroup>

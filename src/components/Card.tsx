@@ -12,19 +12,19 @@ type Props = {
 const Card: FC<Props> = ({
   title, content, imageSrc, imageAlt, children,
 }) => (
-  <Box m={2} p={10} backgroundColor="white" d="flex" flexDirection="column" alignItems="center" maxW="xl" borderWidth="1px" borderRadius="lg">
+  <Box m={2} p={{ sm: '2em', lg: '5em' }} backgroundColor="white" d="flex" flexDirection="column" alignItems="center" maxW={{ sm: '2xl', lg: '3xl' }} borderWidth="1px" borderRadius="lg">
     <Image
       objectFit="cover"
-      boxSize="180px"
+      boxSize={{ sm: '130px', lg: '180px' }}
       src={imageSrc}
       alt={imageAlt}
-      mb={5}
+      mb={8}
     />
-    <VStack spacing={10}>
-      <Heading maxW="70%" as="h1" size="lg" textAlign="center">
+    <VStack spacing={{ sm: '2em', lg: '4em' }}>
+      <Heading maxW="90%" as="h1" fontSize={{ sm: '1.2em', lg: '1.8em' }} textAlign="center">
         {title}
       </Heading>
-      <Text fontSize="md">
+      <Text fontSize={{ sm: '0.9em', lg: '1em' }}>
         {content}
       </Text>
       {children}
