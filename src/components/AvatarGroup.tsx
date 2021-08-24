@@ -25,7 +25,6 @@ const AvatarGroup: FC<Props> = ({ professionalsList }) => (
                 <Text fontSize="xs">{professional.area}</Text>
               </VStack>
             </WrapItem>
-
           ))
     }
     </Grid>

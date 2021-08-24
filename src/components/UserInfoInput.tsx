@@ -68,6 +68,7 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
       </FormControl>
       <Box p={5}>
         <Button
+          w="auto"
           onClick={handleClick}
           size="md"
           colorScheme="blue"
