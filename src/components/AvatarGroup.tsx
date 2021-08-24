@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import {
-  Wrap, WrapItem, Avatar, Text, VStack, Grid,
+  Wrap, WrapItem, Avatar, Text, VStack, Grid, Box,
 } from '@chakra-ui/react';
 
 type Props = {
@@ -13,9 +13,10 @@ type Props = {
     }[]
 }
 const AvatarGroup: FC<Props> = ({ professionalsList }) => (
-  <Wrap>
-    <Grid spacing={4} templateColumns={{ sm: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={8}>
-      {
+  <Box pb={6}>
+    <Wrap>
+      <Grid spacing={4} templateColumns={{ sm: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={8}>
+        {
           professionalsList.map((professional) => (
 
             <WrapItem alignItems="center" key={professional.profilePic}>
@@ -27,8 +28,9 @@ const AvatarGroup: FC<Props> = ({ professionalsList }) => (
             </WrapItem>
           ))
     }
-    </Grid>
-  </Wrap>
+      </Grid>
+    </Wrap>
+  </Box>
 );
 
 export default AvatarGroup;
