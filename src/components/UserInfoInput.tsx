@@ -1,4 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, {
+  FC, useState, MutableRefObject, useRef, useEffect,
+} from 'react';
 import { FaUserCircle, FaArrowAltCircleRight } from 'react-icons/fa';
 import {
   FormControl, Button,
@@ -13,6 +15,7 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
   const [consent, setConsent] = useState('true');
   const [code, setCode] = useState('');
   const [isInvalidInput, setIsInvalidInput] = useState(false);
+  const textInput = useRef() as MutableRefObject<HTMLInputElement>;
 
   const handleClick = () => {
     if (code.trim() === '') {
@@ -22,6 +25,12 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
     setIsInvalidInput(false);
     setUserInfo({ code, consent });
   };
+
+  const focusTextInput = () => textInput.current.focus();
+
+  useEffect(() => {
+    focusTextInput();
+  }, []);
 
   return (
     <>
@@ -40,6 +49,7 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
                 <FaUserCircle color={isInvalidInput ? 'red' : ''} />
               </InputLeftElement>
               <Input
+                ref={textInput}
                 onFocus={() => setIsInvalidInput(false)}
                 isInvalid={isInvalidInput}
                 errorBorderColor="red.500"
