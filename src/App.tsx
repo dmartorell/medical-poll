@@ -9,6 +9,7 @@ import GoodBye from './components/GoodBye';
 import AvatarGroup from './components/AvatarGroup';
 import UserInfoInput from './components/UserInfoInput';
 import professionals from './assets/mockData/professionals';
+import QuestionCard from './components/QuestionCard';
 
 const App:FC = () => {
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
@@ -37,9 +38,8 @@ const App:FC = () => {
   }
 
   if (userInfo.consent === 'true' && userInfo.code) {
-    content = <h1>QUESTIONNAIRE</h1>;
+    content = <QuestionCard imageSrc="src/assets/icons/bipolar.png" />;
   }
-
   return (
     <VStack justifyContent="center" backgroundColor="twitter.50" height="100vh">
       {content}
