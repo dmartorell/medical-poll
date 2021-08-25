@@ -23,7 +23,7 @@ const AvatarGroup: FC<Props> = ({ professionalsList }) => (
               <Avatar mr={4} showBorder={false} size="lg" name={`${professional.firstName} ${professional.lastName}`} src={professional.profilePic} />
               <VStack spacing={1} alignItems="flex-start">
                 <Text as="b" fontSize="xs">{`${professional.firstName} ${professional.lastName}`}</Text>
-                <Text fontSize="xs">{professional.area}</Text>
+                <Text color="gray.500" fontSize="xs">{professional.area}</Text>
               </VStack>
             </WrapItem>
           ))

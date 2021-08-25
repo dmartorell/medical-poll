@@ -12,7 +12,7 @@ type Props = {
 const Card: FC<Props> = ({
   title, content, imageSrc, imageAlt, children,
 }) => (
-  <Box m={2} p={{ sm: '2em', lg: '5em' }} backgroundColor="white" d="flex" flexDirection="column" alignItems="center" maxW={{ sm: '2xl', lg: '3xl' }} borderWidth="1px" borderRadius="lg">
+  <Box boxShadow="sm" m={2} p={{ sm: '2em', lg: '5em' }} backgroundColor="white" d="flex" flexDirection="column" alignItems="center" maxW={{ sm: '2xl', lg: '3xl' }} borderWidth="1px" borderRadius="lg">
     <Image
       objectFit="cover"
       boxSize={{ sm: '130px', lg: '180px' }}
@@ -20,7 +20,7 @@ const Card: FC<Props> = ({
       alt={imageAlt}
       mb={8}
     />
-    <VStack spacing={{ sm: '2em', lg: '4em' }}>
+    <VStack spacing={{ sm: '2em', lg: '3em' }}>
       <Heading maxW="90%" as="h1" fontSize={{ sm: '1.2em', lg: '1.8em' }} textAlign="center">
         {title}
       </Heading>

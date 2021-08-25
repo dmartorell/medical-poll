@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-import React, { FC, useState } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 import {
   VStack, Button, Box,
 } from '@chakra-ui/react';
@@ -12,36 +12,37 @@ import professionals from './assets/mockData/professionals';
 
 const App:FC = () => {
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
+  let content: ReactElement = <Welcome><UserInfoInput setUserInfo={setUserInfo} /></Welcome>;
+
+  if (userInfo.consent === 'false') {
+    content = (
+      <>
+        <GoodBye>
+          <AvatarGroup professionalsList={professionals} />
+        </GoodBye>
+        <Box p={5}>
+          <Button
+            w="auto"
+            onClick={() => setUserInfo({ consent: 'true', code: '' })}
+            size="md"
+            colorScheme="blue"
+            variant="solid"
+            leftIcon={<FaArrowAltCircleLeft />}
+          >
+            Volver
+          </Button>
+        </Box>
+      </>
+    );
+  }
+
+  if (userInfo.consent === 'true' && userInfo.code) {
+    content = <h1>QUESTIONNAIRE</h1>;
+  }
+
   return (
     <VStack justifyContent="center" backgroundColor="twitter.50" height="100vh">
-      {
-        userInfo.consent === 'false'
-          ? (
-            <>
-              <GoodBye>
-                <AvatarGroup professionalsList={professionals} />
-              </GoodBye>
-              <Box p={5}>
-                <Button
-                  w="auto"
-                  onClick={() => setUserInfo({ consent: 'true', code: '' })}
-                  size="md"
-                  colorScheme="blue"
-                  variant="solid"
-                  leftIcon={<FaArrowAltCircleLeft />}
-                >
-                  Volver
-                </Button>
-              </Box>
-
-            </>
-          )
-          : (
-            <Welcome>
-              <UserInfoInput setUserInfo={setUserInfo} />
-            </Welcome>
-          )
-      }
+      {content}
     </VStack>
   );
 };
