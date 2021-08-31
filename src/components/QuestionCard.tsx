@@ -1,38 +1,24 @@
 import React, { FC } from 'react';
-import {
-  Heading, Box, Image, Text, VStack,
-} from '@chakra-ui/react';
+import Card from './Card';
 
 type Props = {
-    title?: string,
-    content?: string,
-    imageSrc?: string,
-    imageAlt?:string
+    children: React.ReactNode,
+    imgSrc: string,
+    isVisible?: boolean
+
   };
 
-const QuestionCard: FC<Props> = ({
-  title, content, imageSrc, imageAlt, children,
-}) => (
-  <Box boxShadow="sm" m={2} p={{ sm: '2em', lg: '5em' }} backgroundColor="white" d="flex" flexDirection="column" alignItems="center" maxW={{ sm: '2xl', lg: '3xl' }} borderWidth="1px" borderRadius="lg">
-    {imageSrc && (
-    <Image
-      objectFit="cover"
-      boxSize={{ sm: '90px', lg: '120px' }}
-      src={imageSrc}
-      alt={imageAlt}
-      mb={8}
-    />
-    )}
-    <VStack spacing={{ sm: '2em', lg: '3em' }}>
-      <Heading maxW="90%" as="h1" fontSize={{ sm: '1em', lg: '1.4em' }} textAlign="center">
-        {title}
-      </Heading>
-      <Text fontSize={{ sm: '0.9em', lg: '1em' }}>
-        {content}
-      </Text>
+const QuestionCard: FC<Props> = ({ children, imgSrc }) => (
+  <>
+    <Card
+      title="Valoración Emocional Post-UCI Covid19"
+      content="A continuación encontrarás unas preguntas sobre tu estado emocional. Lee cada pregunta y selecciona la respuesta que consideres que coincide con tu propio estado emocional durante la última semana. No es necesario que piense mucho tiempo cada respuesta; en este cuestionario las respuestas espontáneas tienen más valor que las que se piensan mucho."
+      imageSrc={imgSrc}
+      imageAlt="ab icon"
+    >
       {children}
-    </VStack>
-  </Box>
+    </Card>
+  </>
 );
 
 export default QuestionCard;

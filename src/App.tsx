@@ -9,11 +9,18 @@ import GoodBye from './components/GoodBye';
 import AvatarGroup from './components/AvatarGroup';
 import UserInfoInput from './components/UserInfoInput';
 import professionals from './assets/mockData/professionals';
-import QuestionCard from './components/QuestionCard';
+
+import Survey from './components/Survey';
 
 const App:FC = () => {
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
   let content: ReactElement = <Welcome><UserInfoInput setUserInfo={setUserInfo} /></Welcome>;
+  const patientId = 1;
+  // const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  // const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
+
+  // console.log(apiKey);
+  // console.log(apiUrl);
 
   if (userInfo.consent === 'false') {
     content = (
@@ -38,7 +45,9 @@ const App:FC = () => {
   }
 
   if (userInfo.consent === 'true' && userInfo.code) {
-    content = <QuestionCard imageSrc="src/assets/icons/bipolar.png" />;
+    content = (
+      <Survey patientId={patientId} />
+    );
   }
   return (
     <VStack justifyContent="center" backgroundColor="twitter.50" height="100vh">

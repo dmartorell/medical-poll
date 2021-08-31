@@ -21,6 +21,9 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    indent: 'off',
+    '@typescript-eslint/semi': 'error',
+
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts'] }],
     'no-use-before-define': 'off',
     'react/prop-types': 0,
