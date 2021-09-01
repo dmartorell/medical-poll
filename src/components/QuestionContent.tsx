@@ -11,11 +11,8 @@ interface iQuestion {
 type Props = {
   questions: iQuestion[] | null
 };
-const QuestionContent: FC<Props> = ({ questions }) => {
-  console.log(questions ? questions[1] : 'Data is null');
-  return (
-    <p />
+const QuestionContent: FC<Props> = ({ questions }) => (
+  <p>Hello</p>
     );
- };
 
 export default QuestionContent;

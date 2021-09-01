@@ -18,7 +18,7 @@ const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
 const App:FC = () => {
-  const [patientId, setPatientId] = useState('');
+  const [patientId, setPatientId] = useState(null);
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
   let content: ReactElement = <Welcome><UserInfoInput setUserInfo={setUserInfo} /></Welcome>;
 
@@ -38,7 +38,7 @@ const App:FC = () => {
         console.log(error.message);
       }
     }
-  }, [userInfo.code]);
+  }, [userInfo]);
 
   if (userInfo.consent === 'false' && patientId) {
     content = (
@@ -49,7 +49,7 @@ const App:FC = () => {
         <Box p={5}>
           <Button
             w="auto"
-            onClick={() => setUserInfo({ consent: 'true', code: '' })}
+            onClick={() => setPatientId(null)}
             size="md"
             colorScheme="blue"
             variant="solid"
@@ -64,7 +64,7 @@ const App:FC = () => {
 
   if (userInfo.consent === 'true' && patientId) {
     content = (
-      <Survey patientId={5} />
+      <Survey patientId={patientId} />
     );
   }
   return (
