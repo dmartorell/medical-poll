@@ -1,24 +1,11 @@
 import React, { FC, useState, useEffect } from 'react';
 import QuestionCard from './QuestionCard';
 import QuestionContent from './QuestionContent';
+import { iQuestionCard } from '../interfaces/interfaces';
 
 type Props = {
     patientId: number | null
 };
-
-interface iQuestion {
-    questionType: string,
-    question: string,
-    givenAnswer: {
-        choices1: string[],
-        choices2: string[] | null
-    }
-}
-
-interface iQuestionCard {
-
-    [index: string] : {imgSrc: string, questions: iQuestion | null}
-}
 
 const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;

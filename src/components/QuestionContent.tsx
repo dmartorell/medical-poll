@@ -1,13 +1,7 @@
 import React, { FC } from 'react';
 
-interface iQuestion {
-    questionType: string,
-    question: string,
-    givenAnswer: {
-        choices1: string[],
-        choices2: string[] | null
-    }
-}
+import { iQuestion } from '../interfaces/interfaces';
+
 type Props = {
   questions: iQuestion[] | null
 };
