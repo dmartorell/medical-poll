@@ -1,5 +1,7 @@
 /* eslint-disable react/no-children-prop */
-import React, { FC, ReactElement, useState } from 'react';
+import React, {
+ FC, ReactElement, useEffect, useState,
+} from 'react';
 import {
   VStack, Button, Box,
 } from '@chakra-ui/react';
@@ -9,20 +11,28 @@ import GoodBye from './components/GoodBye';
 import AvatarGroup from './components/AvatarGroup';
 import UserInfoInput from './components/UserInfoInput';
 import professionals from './assets/mockData/professionals';
-
+// import useFetch from './hooks/useFetch';
 import Survey from './components/Survey';
+import getPatientId from './helpers/getPatientId';
+
+const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
+
+// const getUserId: any = async (email: any) => {
+//   fetchetch(`${apiUrl}/patient?email=eq.${email}`, { headers: { apiKey } });
+//   return { loading, error, data };
+// };
 
 const App:FC = () => {
+  const [patientId, setPatientId] = useState('');
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
   let content: ReactElement = <Welcome><UserInfoInput setUserInfo={setUserInfo} /></Welcome>;
-  const patientId = 1;
-  // const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
-  // const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
-  // console.log(apiKey);
-  // console.log(apiUrl);
+  useEffect(() => {
+    fetch(`${apiUrl}/patient?id=eq.${getPatientId(userInfo.code)}`, { headers: { apiKey } }).then((res) => res.json()).then((data) => setPatientId(data[0]?.id));
+  }, [userInfo]);
 
-  if (userInfo.consent === 'false') {
+  if (userInfo.consent === 'false' && patientId) {
     content = (
       <>
         <GoodBye>
@@ -44,9 +54,9 @@ const App:FC = () => {
     );
   }
 
-  if (userInfo.consent === 'true' && userInfo.code) {
+  if (userInfo.consent === 'true' && patientId) {
     content = (
-      <Survey patientId={patientId} />
+      <Survey patientId={5} />
     );
   }
   return (
