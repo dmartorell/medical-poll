@@ -11,17 +11,11 @@ import GoodBye from './components/GoodBye';
 import AvatarGroup from './components/AvatarGroup';
 import UserInfoInput from './components/UserInfoInput';
 import professionals from './assets/mockData/professionals';
-// import useFetch from './hooks/useFetch';
 import Survey from './components/Survey';
 import getPatientId from './helpers/getPatientId';
 
 const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
-
-// const getUserId: any = async (email: any) => {
-//   fetchetch(`${apiUrl}/patient?email=eq.${email}`, { headers: { apiKey } });
-//   return { loading, error, data };
-// };
 
 const App:FC = () => {
   const [patientId, setPatientId] = useState('');
@@ -29,8 +23,22 @@ const App:FC = () => {
   let content: ReactElement = <Welcome><UserInfoInput setUserInfo={setUserInfo} /></Welcome>;
 
   useEffect(() => {
-    fetch(`${apiUrl}/patient?id=eq.${getPatientId(userInfo.code)}`, { headers: { apiKey } }).then((res) => res.json()).then((data) => setPatientId(data[0]?.id));
-  }, [userInfo]);
+    if (userInfo.code) {
+      try {
+        fetch(`${apiUrl}/patient?id=eq.${getPatientId(userInfo.code)}`, { headers: { apiKey } })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.length) {
+             setPatientId(data[0].id);
+            } else {
+              console.log('PATIENTE INEXISTENTE');
+            }
+          });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }, [userInfo.code]);
 
   if (userInfo.consent === 'false' && patientId) {
     content = (

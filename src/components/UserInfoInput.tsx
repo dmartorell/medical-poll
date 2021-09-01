@@ -10,8 +10,8 @@ import {
 } from '@chakra-ui/react';
 
 type Props = {
-  setUserInfo: any
-}
+  setUserInfo: any,
+};
 const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
   const [consent, setConsent] = useState('true');
   const [code, setCode] = useState('');
@@ -25,6 +25,7 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
     }
     setIsInvalidInput(false);
     setUserInfo({ code, consent });
+    setCode('');
   };
 
   const focusTextInput = () => textInput.current.focus();
