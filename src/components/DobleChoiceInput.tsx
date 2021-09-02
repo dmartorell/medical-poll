@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
  Radio, RadioGroup, Box, FormLabel, Stack, Text,
 } from '@chakra-ui/react';
