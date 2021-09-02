@@ -1,8 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
 import {
-    Button, Box,
+    Button, HStack,
   } from '@chakra-ui/react';
-  import { FaArrowAltCircleRight } from 'react-icons/fa';
+  import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+
 import QuestionCard from './QuestionCard';
 import QuestionContent from './QuestionContent';
 import { iQuestionCard } from '../interfaces/interfaces';
@@ -24,7 +25,10 @@ const Survey: FC<Props> = ({ patientId }) => {
         3: { imgSrc: 'src/assets/icons/mentalHealth.png', questions },
     };
 
-    const handleClick = () => {};
+    const lastBlock = Object.keys(questionCard).length;
+
+    const handleNextBlock = () => { setBlockNumber((prev) => prev + 1); };
+    const handlePrevBlock = () => { setBlockNumber((prev) => prev - 1); };
 
     useEffect(() => {
           try {
@@ -48,18 +52,39 @@ const Survey: FC<Props> = ({ patientId }) => {
           <QuestionContent questions={questions} />
         </QuestionCard>
 
-        <Box p={5}>
-          <Button
-            w="auto"
-            onClick={handleClick}
-            size="md"
-            colorScheme="blue"
-            variant="solid"
-            rightIcon={<FaArrowAltCircleRight />}
-          >
-            Siguiente
-          </Button>
-        </Box>
+        <HStack p={{ sm: 3, lg: 5 }} spacing="4em">
+          {
+              blockNumber > 1 ? (
+                <Button
+                  w="auto"
+                  onClick={handlePrevBlock}
+                  size="md"
+                  colorScheme="blue"
+                  variant="solid"
+                  leftIcon={<FaArrowAltCircleLeft />}
+                >
+                  Anterior
+                </Button>
+                )
+          : null
+            }
+          {
+              blockNumber !== lastBlock
+              ? (
+                <Button
+                  w="auto"
+                  onClick={handleNextBlock}
+                  size="md"
+                  colorScheme="blue"
+                  variant="solid"
+                  rightIcon={<FaArrowAltCircleRight />}
+                >
+                  Siguiente
+                </Button>
+                )
+          : null
+            }
+        </HStack>
       </>
     );
 };
