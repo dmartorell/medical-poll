@@ -1,4 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
+import {
+    Button, Box,
+  } from '@chakra-ui/react';
+  import { FaArrowAltCircleRight } from 'react-icons/fa';
 import QuestionCard from './QuestionCard';
 import QuestionContent from './QuestionContent';
 import { iQuestionCard } from '../interfaces/interfaces';
@@ -19,9 +23,12 @@ const Survey: FC<Props> = ({ patientId }) => {
         2: { imgSrc: 'src/assets/icons/problemSolving.png', questions },
         3: { imgSrc: 'src/assets/icons/mentalHealth.png', questions },
     };
+
+    const handleClick = () => {};
+
     useEffect(() => {
           try {
-            fetch(`${apiUrl}/question?question_block=eq.${blockNumber}`, { headers: { apiKey } })
+            fetch(`${apiUrl}/question?question_block=eq.${blockNumber}&select=question_type, question, given_answer(choices1, choices2)`, { headers: { apiKey } })
               .then((res) => res.json())
               .then((data) => {
                 if (data.length) {
@@ -40,6 +47,18 @@ const Survey: FC<Props> = ({ patientId }) => {
         <QuestionCard imgSrc={questionCard[blockNumber].imgSrc}>
           <QuestionContent questions={questions} />
         </QuestionCard>
+        <Box p={5}>
+          <Button
+            w="auto"
+            onClick={handleClick}
+            size="md"
+            colorScheme="blue"
+            variant="solid"
+            rightIcon={<FaArrowAltCircleRight />}
+          >
+            Siguiente
+          </Button>
+        </Box>
       </>
     );
 };

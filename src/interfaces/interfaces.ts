@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 export interface iQuestion {
-    questionType: string,
+    question_type: string,
     question: string,
-    givenAnswer: {
+    given_answer: {
         choices1: string[],
         choices2: string[] | null
     }
