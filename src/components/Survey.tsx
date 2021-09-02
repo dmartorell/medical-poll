@@ -15,7 +15,7 @@ const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
 const Survey: FC<Props> = ({ patientId }) => {
-    const [blockNumber, setBlockNumber] = useState(2);
+    const [blockNumber, setBlockNumber] = useState(1);
     const [questions, setQuestions] = useState(null);
 
     const questionCard: iQuestionCard = {
