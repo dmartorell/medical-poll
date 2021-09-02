@@ -50,9 +50,11 @@ const App:FC = () => {
     );
   }
   return (
-    <VStack justifyContent="center" backgroundColor="twitter.50" height="100vh">
-      {content}
-    </VStack>
+    <Box backgroundColor="twitter.50" height="100vh" py={{ sm: 0, lg: 10 }}>
+      <VStack justifyContent="center" backgroundColor="twitter.50">
+        {content}
+      </VStack>
+    </Box>
   );
 };
 

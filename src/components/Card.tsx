@@ -12,7 +12,19 @@ type Props = {
 const Card: FC<Props> = ({
   title, content, imageSrc, imageAlt, children,
 }) => (
-  <Box boxShadow="sm" m={2} p={{ sm: '2em', lg: '5em' }} backgroundColor="white" d="flex" flexDirection="column" alignItems="center" maxW={{ sm: '2xl', lg: '3xl' }} borderWidth="1px" borderRadius="lg">
+  <Box
+    boxShadow="sm"
+    m={2}
+    py={8}
+    px={{ sm: '2em', lg: '4em' }}
+    backgroundColor="white"
+    d="flex"
+    flexDirection="column"
+    alignItems="center"
+    maxW={{ sm: '2xl', lg: '3xl' }}
+    borderWidth="1px"
+    borderRadius="lg"
+  >
     {imageSrc && (
     <Image
       objectFit="cover"
