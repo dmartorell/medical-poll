@@ -1,6 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import React, {
- FC, ReactElement, useEffect, useState,
+ FC, ReactElement, useState, useEffect,
 } from 'react';
 import {
   VStack, Button, Box,
@@ -18,9 +18,43 @@ const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
 const App:FC = () => {
-  const [patientId, setPatientId] = useState(null);
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
+  const [patientId, setPatientId] = useState(null);
+
+  const resetData = () : void => {
+    setUserInfo({ consent: 'true', code: '' });
+    setPatientId(null);
+  };
+
   let content: ReactElement = <Welcome><UserInfoInput setUserInfo={setUserInfo} /></Welcome>;
+
+  if (userInfo.consent === 'false' && patientId) {
+    content = (
+      <>
+        <GoodBye>
+          <AvatarGroup professionalsList={professionals} />
+        </GoodBye>
+        <Box p={5}>
+          <Button
+            w="auto"
+            onClick={resetData}
+            size="md"
+            colorScheme="blue"
+            variant="solid"
+            leftIcon={<FaArrowAltCircleLeft />}
+          >
+            Volver
+          </Button>
+        </Box>
+      </>
+    );
+  }
+
+  if (userInfo.consent === 'true' && patientId) {
+    content = (
+      <Survey patientId={patientId} />
+    );
+  }
 
   useEffect(() => {
     if (userInfo.code) {
@@ -40,37 +74,12 @@ const App:FC = () => {
     }
   }, [userInfo]);
 
-  if (userInfo.consent === 'false' && patientId) {
-    content = (
-      <>
-        <GoodBye>
-          <AvatarGroup professionalsList={professionals} />
-        </GoodBye>
-        <Box p={5}>
-          <Button
-            w="auto"
-            onClick={() => setPatientId(null)}
-            size="md"
-            colorScheme="blue"
-            variant="solid"
-            leftIcon={<FaArrowAltCircleLeft />}
-          >
-            Volver
-          </Button>
-        </Box>
-      </>
-    );
-  }
-
-  if (userInfo.consent === 'true' && patientId) {
-    content = (
-      <Survey patientId={patientId} />
-    );
-  }
   return (
-    <VStack justifyContent="center" backgroundColor="twitter.50" height="100vh">
-      {content}
-    </VStack>
+    <Box backgroundColor="twitter.50" height="100vh" py={{ sm: 0, lg: 10 }}>
+      <VStack justifyContent="center" backgroundColor="twitter.50">
+        {content}
+      </VStack>
+    </Box>
   );
 };
 

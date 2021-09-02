@@ -1,30 +1,21 @@
 import React, { FC, useState, useEffect } from 'react';
+import {
+    Button, Box,
+  } from '@chakra-ui/react';
+  import { FaArrowAltCircleRight } from 'react-icons/fa';
 import QuestionCard from './QuestionCard';
 import QuestionContent from './QuestionContent';
+import { iQuestionCard } from '../interfaces/interfaces';
 
 type Props = {
     patientId: number | null
 };
 
-interface iQuestion {
-    questionType: string,
-    question: string,
-    givenAnswer: {
-        choices1: string[],
-        choices2: string[] | null
-    }
-}
-
-interface iQuestionCard {
-
-    [index: string] : {imgSrc: string, questions: iQuestion | null}
-}
-
 const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
 const Survey: FC<Props> = ({ patientId }) => {
-    const [blockNumber, setBlockNumber] = useState(1);
+    const [blockNumber, setBlockNumber] = useState(2);
     const [questions, setQuestions] = useState(null);
 
     const questionCard: iQuestionCard = {
@@ -32,9 +23,12 @@ const Survey: FC<Props> = ({ patientId }) => {
         2: { imgSrc: 'src/assets/icons/problemSolving.png', questions },
         3: { imgSrc: 'src/assets/icons/mentalHealth.png', questions },
     };
+
+    const handleClick = () => {};
+
     useEffect(() => {
           try {
-            fetch(`${apiUrl}/question?question_block=eq.${blockNumber}`, { headers: { apiKey } })
+            fetch(`${apiUrl}/question?question_block=eq.${blockNumber}&select=question_type, question, given_answer(choices1, choices2)`, { headers: { apiKey } })
               .then((res) => res.json())
               .then((data) => {
                 if (data.length) {
@@ -53,6 +47,19 @@ const Survey: FC<Props> = ({ patientId }) => {
         <QuestionCard imgSrc={questionCard[blockNumber].imgSrc}>
           <QuestionContent questions={questions} />
         </QuestionCard>
+
+        <Box p={5}>
+          <Button
+            w="auto"
+            onClick={handleClick}
+            size="md"
+            colorScheme="blue"
+            variant="solid"
+            rightIcon={<FaArrowAltCircleRight />}
+          >
+            Siguiente
+          </Button>
+        </Box>
       </>
     );
 };

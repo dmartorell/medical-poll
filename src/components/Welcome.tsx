@@ -5,7 +5,7 @@ import Card from './Card';
 type Props = {
   children: React.ReactNode,
 
-}
+};
 const Welcome: FC<Props> = ({ children }) => (
 
   <Card

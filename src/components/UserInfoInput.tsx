@@ -2,7 +2,6 @@ import React, {
   FC, useState, MutableRefObject, useRef, useEffect,
 } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
-// FaArrowAltCircleRight
 import {
   FormControl, Button,
   FormLabel, Stack, Box, Input, InputGroup,
@@ -88,7 +87,6 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
           size="md"
           colorScheme="blue"
           variant="solid"
-          // rightIcon={<FaArrowAltCircleRight />}
         >
           Empezar
         </Button>
