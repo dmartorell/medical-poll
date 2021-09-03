@@ -2,6 +2,7 @@
 export interface iQuestion {
     question_type: string,
     question: string,
+    id: number
     given_answer: {
         choices1: string[],
         choices2: string[] | null
