@@ -5,12 +5,12 @@ import {
 
 type Props = {
     title?: string,
-    content?: string,
     imageSrc?: string,
-    imageAlt?:string
+    imageAlt?:string,
+    textIntro?:string
   };
 const Card: FC<Props> = ({
-  title, content, imageSrc, imageAlt, children,
+  title, textIntro, imageSrc, imageAlt, children,
 }) => (
   <Box
     boxShadow="sm"
@@ -39,7 +39,7 @@ const Card: FC<Props> = ({
         {title}
       </Heading>
       <Text fontSize={{ sm: '0.9em', lg: '1em' }}>
-        {content}
+        {textIntro}
       </Text>
       {children}
     </VStack>
