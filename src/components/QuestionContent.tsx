@@ -3,9 +3,10 @@ import React, { FC } from 'react';
 import { iQuestion } from '../interfaces/interfaces';
 import MultipleChoiceInput from './MultipleChoiceInput';
 import DobleChoiceInput from './DobleChoiceInput';
+import OpenAnswerInput from './OpenAnswerInput';
 
 type Props = {
-  questions?: iQuestion[] | null,
+  questions: iQuestion[] | null,
 };
 
 const QuestionContent: FC<Props> = ({ questions }) => (
@@ -14,6 +15,7 @@ const QuestionContent: FC<Props> = ({ questions }) => (
       questions?.map((q) => {
         const { question_type, question, given_answer } = q;
         let content;
+
         if (question_type === 'multipleChoice') {
           content = (
             <MultipleChoiceInput
@@ -31,7 +33,12 @@ const QuestionContent: FC<Props> = ({ questions }) => (
             />
 );
         } else {
-          content = null;
+          content = (
+            <OpenAnswerInput
+              key={question}
+              question={question}
+            />
+);
         }
         return (
           content
