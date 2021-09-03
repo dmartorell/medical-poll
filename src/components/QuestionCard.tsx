@@ -4,15 +4,14 @@ import Card from './Card';
 type Props = {
     children: React.ReactNode,
     imgSrc: string,
-    isVisible?: boolean
-
+    textIntro: string
   };
 
-const QuestionCard: FC<Props> = ({ children, imgSrc }) => (
+const QuestionCard: FC<Props> = ({ children, imgSrc, textIntro }) => (
   <>
     <Card
-      title="Valoración Emocional Post-UCI Covid19"
-      content="A continuación encontrarás unas preguntas sobre tu estado emocional. Lee cada pregunta y selecciona la respuesta que consideres que coincide con tu propio estado emocional durante la última semana. No es necesario que piense mucho tiempo cada respuesta; en este cuestionario las respuestas espontáneas tienen más valor que las que se piensan mucho."
+      title="Valoración Emocional Post-UCI Covid199"
+      textIntro={textIntro}
       imageSrc={imgSrc}
       imageAlt="ab icon"
     >

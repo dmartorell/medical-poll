@@ -3,7 +3,6 @@ import React, { FC } from 'react';
 import {
  Radio, RadioGroup, Box, FormLabel, Stack, Text,
 } from '@chakra-ui/react';
-import getAnswerValue from '../helpers/getAnswerValue';
 
 type Props = {
     question: string,

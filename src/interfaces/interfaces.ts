@@ -9,5 +9,5 @@ export interface iQuestion {
 }
 
 export interface iQuestionCard {
-    [index: string] : {imgSrc: string, questions: iQuestion | null}
+    [index: string] : {imgSrc: string, questions: iQuestion | null, textIntro: string}
 }

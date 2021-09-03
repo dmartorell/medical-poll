@@ -68,8 +68,8 @@ const App:FC = () => {
               console.log('PATIENTE INEXISTENTE');
             }
           });
-      } catch (error) {
-        console.log(error.message);
+      } catch ({ message }) {
+        console.log(message);
       }
     }
   }, [userInfo]);

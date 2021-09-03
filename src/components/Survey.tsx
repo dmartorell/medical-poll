@@ -20,9 +20,9 @@ const Survey: FC<Props> = ({ patientId }) => {
     const [questions, setQuestions] = useState(null);
 
     const questionCard: iQuestionCard = {
-        1: { imgSrc: 'src/assets/icons/bipolar.png', questions },
-        2: { imgSrc: 'src/assets/icons/problemSolving.png', questions },
-        3: { imgSrc: 'src/assets/icons/mentalHealth.png', questions },
+        1: { imgSrc: 'src/assets/icons/bipolar.png', questions, textIntro: 'A continuación encontrarás unas preguntas sobre tu estado emocional. Lee cada pregunta y selecciona la respuesta que consideres que coincide con tu propio estado emocional durante la última semana. No es necesario que piense mucho tiempo cada respuesta; en este cuestionario las respuestas espontáneas tienen más valor que las que se piensan mucho.' },
+        2: { imgSrc: 'src/assets/icons/problemSolving.png', questions, textIntro: 'Cada una de las siguientes preguntas se refiere a un síntoma específico. Considere, para cada pregunta, cuántas veces le ha molestado el síntoma y con qué intensidad, durante la última semana. Indique para cada pregunta cuál ha sido la frecuencia y la gravedad del síntoma.' },
+        3: { imgSrc: 'src/assets/icons/mentalHealth.png', questions, textIntro: 'Para acabar esta sección, nos gustaría que respondiera estas dos preguntas abiertas.' },
     };
 
     const lastBlock = Object.keys(questionCard).length;
@@ -36,23 +36,27 @@ const Survey: FC<Props> = ({ patientId }) => {
               .then((res) => res.json())
               .then((data) => {
                 if (data.length) {
+                    console.log(data);
                  setQuestions(data);
                 } else {
                   console.log('NO HAY QUESTIONS');
                 }
               });
-          } catch (error) {
-            console.log(error.message);
+          } catch ({ message }) {
+            console.log(message);
           }
       }, [blockNumber]);
 
     return (
       <>
-        <QuestionCard imgSrc={questionCard[blockNumber].imgSrc}>
+        <QuestionCard
+          imgSrc={questionCard[blockNumber].imgSrc}
+          textIntro={questionCard[blockNumber].textIntro}
+        >
           <QuestionContent questions={questions} />
         </QuestionCard>
 
-        <HStack p={{ sm: 3, lg: 5 }} spacing="4em">
+        <HStack p={{ sm: 3, lg: 4 }} spacing="4em">
           {
               blockNumber > 1 ? (
                 <Button
