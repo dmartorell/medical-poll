@@ -57,37 +57,16 @@ const Survey: FC<Props> = ({ patientId }) => {
         </QuestionCard>
 
         <HStack p={{ sm: 3, lg: 4 }} spacing="4em">
-          {
-              blockNumber > 1 ? (
-                <Button
-                  w="auto"
-                  onClick={handlePrevBlock}
-                  size="md"
-                  colorScheme="blue"
-                  variant="solid"
-                  leftIcon={<FaArrowAltCircleLeft />}
-                >
-                  Anterior
-                </Button>
-                )
-          : null
-            }
-          {
-              blockNumber !== lastBlock
-              ? (
-                <Button
-                  w="auto"
-                  onClick={handleNextBlock}
-                  size="md"
-                  colorScheme="blue"
-                  variant="solid"
-                  rightIcon={<FaArrowAltCircleRight />}
-                >
-                  Siguiente
-                </Button>
-                )
-          : null
-            }
+          <Button
+            w="auto"
+            onClick={handleNextBlock}
+            size="md"
+            colorScheme="blue"
+            variant="solid"
+            rightIcon={<FaArrowAltCircleRight />}
+          >
+            Siguiente
+          </Button>
         </HStack>
       </>
     );
