@@ -36,7 +36,7 @@ const Survey: FC<Props> = ({ patientId }) => {
               .then((res) => res.json())
               .then((data) => {
                 if (data.length) {
-                    console.log(data);
+                    // console.log(data);
                  setQuestions(data);
                 } else {
                   console.log('NO HAY QUESTIONS');

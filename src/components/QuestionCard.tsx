@@ -10,7 +10,7 @@ type Props = {
 const QuestionCard: FC<Props> = ({ children, imgSrc, textIntro }) => (
   <>
     <Card
-      title="Valoración Emocional Post-UCI Covid199"
+      title="Valoración Emocional Post-UCI Covid19"
       textIntro={textIntro}
       imageSrc={imgSrc}
       imageAlt="ab icon"

@@ -19,7 +19,7 @@ const OpenAnswerInput : FC<Props> = ({ question }) => {
           value={value}
           onChange={({ target }) => { setValue(target.value); }}
           placeholder="Escriba aquí..."
-          size="md"
+          size="sm"
         />
       </>
     );
