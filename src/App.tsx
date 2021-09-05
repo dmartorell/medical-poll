@@ -6,6 +6,8 @@ import {
   VStack, Button, Box,
 } from '@chakra-ui/react';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
+// eslint-disable-next-line import/no-extraneous-dependencies
+
 import Welcome from './components/Welcome';
 import GoodBye from './components/GoodBye';
 import AvatarGroup from './components/AvatarGroup';
@@ -75,11 +77,13 @@ const App:FC = () => {
   }, [userInfo]);
 
   return (
+
     <Box backgroundColor="twitter.50" height="100vh" py={{ sm: 0, lg: 10 }}>
       <VStack justifyContent="center" backgroundColor="twitter.50">
         {content}
       </VStack>
     </Box>
+
   );
 };
 

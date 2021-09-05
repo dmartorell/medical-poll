@@ -30,7 +30,8 @@ const Survey: FC<Props> = ({ patientId }) => {
 
     // const lastBlock = Object.keys(questionCard).length;
 
-    const handleNextBlock = () => {
+    const handleNextBlock = (event: any) => {
+      event.preventDefault();
       setBlockNumber((prev) => prev + 1);
       console.log('ROWS TO INSERT TO DB = ', rowsToInsertToDb);
       try {
@@ -62,7 +63,8 @@ const Survey: FC<Props> = ({ patientId }) => {
       }, [blockNumber]);
 
     return (
-      <>
+
+      <form onSubmit={handleNextBlock}>
         <QuestionCard
           imgSrc={questionCard[blockNumber].imgSrc}
           textIntro={questionCard[blockNumber].textIntro}
@@ -78,8 +80,8 @@ const Survey: FC<Props> = ({ patientId }) => {
 
         <HStack p={{ sm: 3, lg: 4 }} spacing="4em">
           <Button
+            type="submit"
             w="auto"
-            onClick={handleNextBlock}
             size="md"
             colorScheme="blue"
             variant="solid"
@@ -88,7 +90,7 @@ const Survey: FC<Props> = ({ patientId }) => {
             Siguiente
           </Button>
         </HStack>
-      </>
+      </form>
     );
 };
 

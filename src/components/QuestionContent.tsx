@@ -42,7 +42,12 @@ const QuestionContent: FC<Props> = ({
             <DobleChoiceInput
               key={question}
               question={question}
+              questionId={questionId}
               choices={given_answer}
+              rows={rows}
+              setNewAnswers={setRows}
+              project={project}
+              patientId={patientId}
             />
 );
         } else {
