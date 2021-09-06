@@ -5,7 +5,7 @@ export interface iQuestion {
     id: number
     given_answer: {
         choices1: string[],
-        choices2: string[] | null
+        choices2?: string[] | null,
     }
 }
 

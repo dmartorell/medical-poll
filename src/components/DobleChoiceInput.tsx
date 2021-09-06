@@ -9,7 +9,7 @@ type Props = {
   questionId: number,
   choices: {
       choices1: string[],
-      choices2: string[] | null,
+      choices2?: string[] | null,
 
     },
   rows: any[],
@@ -51,6 +51,7 @@ useEffect(() => {
 }, [frecuencia, gravedad]);
 
   return (
+
     <Box borderWidth="1px" boxShadow="sm" borderColor="grey.50" borderRadius="lg" p={5} w="100%" bg="rgba(123, 120, 120, 0.01)" alignSelf="flex-start">
       <Text mb={6} w="100%" bg="blue.800" px={4} py={2} borderRadius="md" color="white" fontSize={{ sm: 14, lg: 17 }}>
         {question}
@@ -88,6 +89,7 @@ useEffect(() => {
         </FormControl>
       </Stack>
     </Box>
+
   );
  };
 
