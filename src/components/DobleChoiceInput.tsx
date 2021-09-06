@@ -59,7 +59,7 @@ useEffect(() => {
       <Stack direction="row" justifyContent="center" spacing="100px">
         <FormControl isRequired>
           <RadioGroup colorScheme="blue" size="md">
-            <FormLabel mb={3} color="gray.500" fontSize="md">FRECUENCIA</FormLabel>
+            <Text mb={3} color="gray.500" fontSize="md">FRECUENCIA</Text>
             <Stack direction="column" spacing={1}>
               {
               choices1?.map(
@@ -74,7 +74,7 @@ useEffect(() => {
         </FormControl>
         <FormControl isRequired>
           <RadioGroup colorScheme="blue" size="md">
-            <FormLabel mb={3} color="gray.500" fontSize="md">GRAVEDAD</FormLabel>
+            <Text mb={3} color="gray.500" fontSize="md">GRAVEDAD</Text>
             <Stack direction="column" spacing={1}>
               {
               choices2?.map(
