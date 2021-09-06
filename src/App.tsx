@@ -16,9 +16,10 @@ import UserInfoInput from './components/UserInfoInput';
 import professionals from './assets/mockData/professionals';
 import Survey from './components/Survey';
 import getPatientId from './helpers/getPatientId';
+import { fetchPatientId } from './helpers/fetchDB';
 
-const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
+// const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
 const App:FC = () => {
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
@@ -61,19 +62,15 @@ const App:FC = () => {
 
   useEffect(() => {
     if (userInfo.code) {
-      try {
-        fetch(`${apiUrl}/patient?id=eq.${getPatientId(userInfo.code)}`, { headers: { apiKey } })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.length) {
-             setPatientId(data[0].id);
-            } else {
-              console.log('PATIENTE INEXISTENTE');
-            }
-          });
-      } catch ({ message }) {
-        console.log(message);
-      }
+      fetchPatientId(getPatientId(userInfo.code))
+      .then((res : any) => res.json())
+      .then((data : any) => {
+        if (data.length) {
+         setPatientId(data[0].id);
+        } else {
+          console.log('PATIENTE INEXISTENTE');
+        }
+      });
     }
   }, [userInfo]);
 

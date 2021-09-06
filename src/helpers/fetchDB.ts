@@ -21,3 +21,11 @@ export const fetchQuestions = (blockNumber: number) : any => {
         return console.log(message);
       }
 };
+
+export const fetchPatientId = (code : number) : any => {
+  try {
+    return fetch(`${apiUrl}/patient?id=eq.${code}`, { headers: { apiKey } });
+  } catch ({ message }) {
+    return console.log(message);
+  }
+};
