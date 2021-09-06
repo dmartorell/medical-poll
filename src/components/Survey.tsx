@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import React, { FC, useState, useEffect } from 'react';
 import {
     Button, HStack,
@@ -10,13 +11,14 @@ import QuestionContent from './QuestionContent';
 import { iQuestionCard } from '../interfaces/interfaces';
 
 type Props = {
-    patientId: number | null
+    patientId: number | null,
+    setSurveyIsFinished: any;
 };
 
 const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
-const Survey: FC<Props> = ({ patientId }) => {
+const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
     const [blockNumber, setBlockNumber] = useState(1);
     const [questions, setQuestions] = useState(null);
     const [project, setProject] = useState(null);
@@ -31,18 +33,28 @@ const Survey: FC<Props> = ({ patientId }) => {
 
     const lastBlock = Object.keys(questionCard).length;
 
-    const handleNextBlock = (event: any) => {
+//     const submitAnswers = (event: any) => {
+//       event.preventDefault();
+//       console.log('ROWS TO INSERT TO DB = ', rowsToInsertToDb);
+//       try {
+//         console.log('POSTING ANSWERS');
+
+//         fetch(`${apiUrl}/answer`, {
+//           headers: { apiKey, 'Content-Type': 'application/json' },
+//           body: JSON.stringify(rowsToInsertToDb),
+//           method: 'POST',
+// });
+//       } catch ({ message }) {
+//         console.log(message);
+//       }
+//     };
+
+    const handleNextBlock = (event:any) => {
       event.preventDefault();
+      if (blockNumber === lastBlock) {
+        setSurveyIsFinished(true);
+      } else {
       setBlockNumber((prev) => prev + 1);
-      console.log('ROWS TO INSERT TO DB = ', rowsToInsertToDb);
-      try {
-        fetch(`${apiUrl}/answer`, {
-          headers: { apiKey, 'Content-Type': 'application/json' },
-          body: JSON.stringify(rowsToInsertToDb),
-          method: 'POST',
-});
-      } catch ({ message }) {
-        console.log(message);
       }
     };
 
@@ -78,30 +90,17 @@ const Survey: FC<Props> = ({ patientId }) => {
             patientId={patientId}
           />
           <HStack p={{ sm: 4, lg: 6 }} justifyContent="center">
-            {blockNumber !== lastBlock ? (
-              <Button
-                type="submit"
-                w="auto"
-                size="md"
-                colorScheme="blue"
-                variant="solid"
-                rightIcon={<FaArrowAltCircleRight />}
-              >
-                Siguiente
-              </Button>
-)
-            : (
-              <Button
-                type="submit"
-                w="auto"
-                size="md"
-                colorScheme="pink"
-                variant="solid"
-                rightIcon={<FiSend />}
-              >
-                Enviar
-              </Button>
-)}
+
+            <Button
+              type="submit"
+              w="auto"
+              size="md"
+              colorScheme={blockNumber !== lastBlock ? 'blue' : 'pink'}
+              variant="solid"
+              rightIcon={blockNumber !== lastBlock ? <FaArrowAltCircleRight /> : <FiSend />}
+            >
+              {blockNumber !== lastBlock ? 'Siguiente' : 'Terminar'}
+            </Button>
           </HStack>
         </form>
       </QuestionCard>

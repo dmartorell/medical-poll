@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React, { FC, useState, useEffect } from 'react';
 import {
- Radio, RadioGroup, Box, FormLabel, FormControl, Stack, Text,
+ Radio, RadioGroup, Box, FormControl, Stack, Text,
 } from '@chakra-ui/react';
 
 type Props = {
@@ -53,7 +53,7 @@ useEffect(() => {
 
   return (
     <Box borderWidth="1px" boxShadow="sm" borderColor="grey.50" borderRadius="lg" p={5} w="100%" bg="rgba(123, 120, 120, 0.01)" alignSelf="flex-start">
-      <Text mb={6} w="100%" bg="blue.800" px={4} py={2} borderRadius="sm" color="white" fontSize={{ sm: 14, lg: 17 }}>
+      <Text mb={6} w="100%" bg="blue.800" px={4} py={2} borderRadius="md" color="white" fontSize={{ sm: 14, lg: 17 }}>
         {question}
       </Text>
       <Stack direction="row" justifyContent="center" spacing="100px">

@@ -1,5 +1,8 @@
 /* eslint-disable camelcase */
 import React, { FC } from 'react';
+import {
+  VStack,
+ } from '@chakra-ui/react';
 import { iQuestion } from '../interfaces/interfaces';
 import MultipleChoiceInput from './MultipleChoiceInput';
 import DobleChoiceInput from './DobleChoiceInput';
@@ -16,7 +19,7 @@ type Props = {
 const QuestionContent: FC<Props> = ({
  questions, rows, setRows, project, patientId,
 }) => (
-  <>
+  <VStack spacing={{ sm: 3, lg: 5 }}>
     {
       questions?.map((q) => {
         const {
@@ -55,6 +58,11 @@ const QuestionContent: FC<Props> = ({
             <OpenAnswerInput
               key={question}
               question={question}
+              questionId={questionId}
+              rows={rows}
+              setNewAnswers={setRows}
+              project={project}
+              patientId={patientId}
             />
 );
         }
@@ -63,6 +71,6 @@ const QuestionContent: FC<Props> = ({
         );
       })
     }
-  </>
+  </VStack>
   );
 export default QuestionContent;
