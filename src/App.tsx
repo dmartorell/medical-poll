@@ -18,9 +18,6 @@ import Survey from './components/Survey';
 import getPatientId from './helpers/getPatientId';
 import { fetchPatientId } from './helpers/fetchDB';
 
-// const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
-// const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
-
 const App:FC = () => {
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
   const [patientId, setPatientId] = useState(null);
