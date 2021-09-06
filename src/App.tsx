@@ -1,10 +1,11 @@
-/* eslint-disable react/no-children-prop */
 import React, {
  FC, ReactElement, useState, useEffect,
 } from 'react';
 import {
   VStack, Button, Box,
-} from '@chakra-ui/react';
+
+   } from '@chakra-ui/react';
+
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 // eslint-disable-next-line import/no-extraneous-dependencies
 
@@ -22,15 +23,17 @@ const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 const App:FC = () => {
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
   const [patientId, setPatientId] = useState(null);
+  const [surveyIsFinished, setSurveyIsFinished] = useState(false);
 
   const resetData = () : void => {
     setUserInfo({ consent: 'true', code: '' });
     setPatientId(null);
+    setSurveyIsFinished(false);
   };
 
   let content: ReactElement = <Welcome><UserInfoInput setUserInfo={setUserInfo} /></Welcome>;
 
-  if (userInfo.consent === 'false' && patientId) {
+  if ((userInfo.consent === 'false' && patientId) || surveyIsFinished) {
     content = (
       <>
         <GoodBye>
@@ -50,11 +53,9 @@ const App:FC = () => {
         </Box>
       </>
     );
-  }
-
-  if (userInfo.consent === 'true' && patientId) {
+  } else if (userInfo.consent === 'true' && patientId) {
     content = (
-      <Survey patientId={patientId} />
+      <Survey patientId={patientId} setSurveyIsFinished={setSurveyIsFinished} />
     );
   }
 
