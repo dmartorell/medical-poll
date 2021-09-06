@@ -23,7 +23,6 @@ const DobleChoiceInput: FC<Props> = ({
 }) => {
   const [frecuencia, setFrecuencia] = useState('');
     const [gravedad, setGravedad] = useState('');
-    // const [dataToSend, setDataToSend] = useState({ questionId, answer: ['', ''] });
 
   const { choices1, choices2 } = choices;
 
