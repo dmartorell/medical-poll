@@ -3,6 +3,7 @@ import {
     Button, HStack,
   } from '@chakra-ui/react';
   import { FaArrowAltCircleRight } from 'react-icons/fa';
+  import { FiSend } from 'react-icons/fi';
 
 import QuestionCard from './QuestionCard';
 import QuestionContent from './QuestionContent';
@@ -28,9 +29,10 @@ const Survey: FC<Props> = ({ patientId }) => {
         3: { imgSrc: 'src/assets/icons/mentalHealth.png', questions, textIntro: 'Para acabar esta sección, nos gustaría que respondiera estas dos preguntas abiertas.' },
     };
 
-    // const lastBlock = Object.keys(questionCard).length;
+    const lastBlock = Object.keys(questionCard).length;
 
-    const handleNextBlock = () => {
+    const handleNextBlock = (event: any) => {
+      event.preventDefault();
       setBlockNumber((prev) => prev + 1);
       console.log('ROWS TO INSERT TO DB = ', rowsToInsertToDb);
       try {
@@ -62,11 +64,12 @@ const Survey: FC<Props> = ({ patientId }) => {
       }, [blockNumber]);
 
     return (
-      <>
-        <QuestionCard
-          imgSrc={questionCard[blockNumber].imgSrc}
-          textIntro={questionCard[blockNumber].textIntro}
-        >
+
+      <QuestionCard
+        imgSrc={questionCard[blockNumber].imgSrc}
+        textIntro={questionCard[blockNumber].textIntro}
+      >
+        <form onSubmit={handleNextBlock}>
           <QuestionContent
             questions={questions}
             rows={rowsToInsertToDb}
@@ -74,21 +77,35 @@ const Survey: FC<Props> = ({ patientId }) => {
             project={project}
             patientId={patientId}
           />
-        </QuestionCard>
+          <HStack p={{ sm: 4, lg: 6 }} justifyContent="center">
+            {blockNumber !== lastBlock ? (
+              <Button
+                type="submit"
+                w="auto"
+                size="md"
+                colorScheme="blue"
+                variant="solid"
+                rightIcon={<FaArrowAltCircleRight />}
+              >
+                Siguiente
+              </Button>
+)
+            : (
+              <Button
+                type="submit"
+                w="auto"
+                size="md"
+                colorScheme="pink"
+                variant="solid"
+                rightIcon={<FiSend />}
+              >
+                Enviar
+              </Button>
+)}
+          </HStack>
+        </form>
+      </QuestionCard>
 
-        <HStack p={{ sm: 3, lg: 4 }} spacing="4em">
-          <Button
-            w="auto"
-            onClick={handleNextBlock}
-            size="md"
-            colorScheme="blue"
-            variant="solid"
-            rightIcon={<FaArrowAltCircleRight />}
-          >
-            Siguiente
-          </Button>
-        </HStack>
-      </>
     );
 };
 
