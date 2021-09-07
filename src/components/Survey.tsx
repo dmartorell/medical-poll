@@ -37,8 +37,8 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
         try {
           postSurveyToDB(rowsToInsertToDb);
           toast({
-          title: 'Envío correcto.',
-          description: 'Su cuestionario se ha almacenado correctamente.',
+          title: 'Envío correcto',
+          description: 'Su cuestionario ha sido almacenado.',
           status: 'success',
           position: 'bottom',
           duration: 4500,

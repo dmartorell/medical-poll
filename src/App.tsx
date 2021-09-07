@@ -67,7 +67,7 @@ const App:FC = () => {
          setPatientId(data[0].id);
         } else {
           toast({
-            title: 'Error de acceso.',
+            title: 'Error de acceso',
             description: 'Compruebe que el código es correcto.',
             status: 'error',
             position: 'bottom',
