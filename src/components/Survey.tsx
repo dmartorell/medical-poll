@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import React, { FC, useState, useEffect } from 'react';
 import {
-    Button, HStack,
+    Button, HStack, Spinner,
   } from '@chakra-ui/react';
   import { FaArrowAltCircleRight } from 'react-icons/fa';
   import { FiSend } from 'react-icons/fi';
@@ -15,9 +15,6 @@ type Props = {
     patientId: number | null,
     setSurveyIsFinished: any;
 };
-
-// const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
-// const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
 const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
     const [blockNumber, setBlockNumber] = useState(1);
@@ -44,6 +41,7 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
     };
 
     useEffect(() => {
+      setQuestions(null);
       fetchQuestions(blockNumber)
       .then((res : any) => res.json())
       .then((data : any) => {
@@ -62,28 +60,40 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
         imgSrc={questionCard[blockNumber].imgSrc}
         textIntro={questionCard[blockNumber].textIntro}
       >
-        <form onSubmit={handleNextBlock}>
-          <QuestionContent
-            questions={questions}
-            rows={rowsToInsertToDb}
-            setRows={setRowsToInsertToDb}
-            project={project}
-            patientId={patientId}
-          />
-          <HStack p={{ sm: 4, lg: 6 }} justifyContent="center">
+        { questions
+        ? (
+          <form onSubmit={handleNextBlock}>
+            <QuestionContent
+              questions={questions}
+              rows={rowsToInsertToDb}
+              setRows={setRowsToInsertToDb}
+              project={project}
+              patientId={patientId}
+            />
+            <HStack p={{ sm: 4, lg: 6 }} justifyContent="center">
 
-            <Button
-              type="submit"
-              w="auto"
-              size="md"
-              colorScheme={blockNumber !== lastBlock ? 'blue' : 'pink'}
-              variant="solid"
-              rightIcon={blockNumber !== lastBlock ? <FaArrowAltCircleRight /> : <FiSend />}
-            >
-              {blockNumber !== lastBlock ? 'Siguiente' : 'Terminar'}
-            </Button>
-          </HStack>
-        </form>
+              <Button
+                type="submit"
+                w="auto"
+                size="md"
+                colorScheme={blockNumber !== lastBlock ? 'blue' : 'pink'}
+                variant="solid"
+                rightIcon={blockNumber !== lastBlock ? <FaArrowAltCircleRight /> : <FiSend />}
+              >
+                {blockNumber !== lastBlock ? 'Siguiente' : 'Terminar'}
+              </Button>
+            </HStack>
+          </form>
+)
+        : (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.400"
+            size="xl"
+          />
+)}
       </QuestionCard>
 
     );

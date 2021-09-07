@@ -11,7 +11,7 @@ type Props = {
         area: string,
         profilePic: string,
     }[]
-}
+};
 const AvatarGroup: FC<Props> = ({ professionalsList }) => (
   <Box pb={6}>
     <Wrap>

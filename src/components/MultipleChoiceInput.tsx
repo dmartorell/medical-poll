@@ -37,7 +37,7 @@ const MultipleChoiceInput: FC<Props> = ({
     };
 
     return (
-      <Box borderWidth="1px" boxShadow="sm" borderColor="grey.50" borderRadius="lg" p={5} w="100%" bg="rgba(123, 120, 120, 0.01)" alignSelf="flex-start">
+      <Box borderWidth="1px" boxShadow="sm" borderColor="grey.50" borderRadius="lg" p={5} w="100%" bg="rgba(123, 120, 120, 0.01)">
         <FormControl isRequired>
           <Text mb={6} bg="blue.800" px={4} py={2} borderRadius="md" color="white" fontSize={{ sm: 14, lg: 17 }}>
             {question}

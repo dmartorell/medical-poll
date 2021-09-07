@@ -42,6 +42,7 @@ const OpenAnswerInput : FC<Props> = ({
           placeholder="Escriba aquí..."
           size="md"
           borderRadius={0}
+          mb={5}
         />
       </FormControl>
     );
