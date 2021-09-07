@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import React, { FC, useState, useEffect } from 'react';
 import {
-    Button, HStack, Spinner,
+    Button, HStack, Spinner, useToast,
   } from '@chakra-ui/react';
   import { FaArrowAltCircleRight } from 'react-icons/fa';
   import { FiSend } from 'react-icons/fi';
@@ -21,6 +21,7 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
     const [questions, setQuestions] = useState(null);
     const [project, setProject] = useState(null);
     const [rowsToInsertToDb, setRowsToInsertToDb] = useState([]);
+    const toast = useToast();
 
     const questionCard: iQuestionCard = {
         1: { imgSrc: 'src/assets/icons/bipolar.png', questions, textIntro: 'A continuación encontrarás unas preguntas sobre tu estado emocional. Lee cada pregunta y selecciona la respuesta que consideres que coincide con tu propio estado emocional durante la última semana. No es necesario que piense mucho tiempo cada respuesta; en este cuestionario las respuestas espontáneas tienen más valor que las que se piensan mucho.' },
@@ -33,8 +34,22 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
     const handleNextBlock = (event:any) => {
       event.preventDefault();
       if (blockNumber === lastBlock) {
-        setSurveyIsFinished(true);
-        postSurveyToDB(rowsToInsertToDb);
+        try {
+          postSurveyToDB(rowsToInsertToDb);
+          toast({
+          title: 'Envío correcto.',
+          description: 'Su cuestionario se ha almacenado correctamente.',
+          status: 'success',
+          position: 'bottom',
+          duration: 4500,
+          isClosable: false,
+          });
+        } catch {
+          console.log('error');
+        }
+        setTimeout(() => {
+          setSurveyIsFinished(true);
+        }, 1800);
       } else {
       setBlockNumber((prev) => prev + 1);
       }
