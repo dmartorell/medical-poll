@@ -2,15 +2,14 @@ const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
 export const postSurveyToDB = (data: any) => {
-      console.log('ROWS TO INSERT TO DB = ', data);
       try {
-        fetch(`${apiUrl}/answer`, {
+        return fetch(`${apiUrl}/answer`, {
           headers: { apiKey, 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
           method: 'POST',
 });
       } catch ({ message }) {
-        console.log(message);
+        return console.log(message);
       }
 };
 

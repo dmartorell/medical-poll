@@ -51,7 +51,7 @@ const UserInfoInput: FC<Props> = ({ setUserInfo }) => {
               </InputLeftElement>
               <Input
                 errorBorderColor="red.500"
-                placeholder={isInvalidInput ? 'Introduce código' : ''}
+                placeholder={isInvalidInput ? 'Introduzca el código' : ''}
                 _placeholder={{ color: 'red.500' }}
                 isInvalid={isInvalidInput}
                 ref={textInput}

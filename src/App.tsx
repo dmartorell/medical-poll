@@ -2,7 +2,7 @@ import React, {
  FC, ReactElement, useState, useEffect,
 } from 'react';
 import {
-  VStack, Button, Box,
+  VStack, Button, Box, useToast,
 
    } from '@chakra-ui/react';
 
@@ -22,6 +22,7 @@ const App:FC = () => {
   const [userInfo, setUserInfo] = useState({ consent: 'true', code: '' });
   const [patientId, setPatientId] = useState(null);
   const [surveyIsFinished, setSurveyIsFinished] = useState(false);
+  const toast = useToast();
 
   const resetData = () : void => {
     setUserInfo({ consent: 'true', code: '' });
@@ -65,7 +66,14 @@ const App:FC = () => {
         if (data.length) {
          setPatientId(data[0].id);
         } else {
-          console.log('PATIENTE INEXISTENTE');
+          toast({
+            title: 'Error de acceso.',
+            description: 'Compruebe que el código es correcto.',
+            status: 'error',
+            position: 'bottom',
+            duration: 3500,
+            isClosable: false,
+          });
         }
       });
     }
