@@ -6,26 +6,26 @@ import {
 type Props = {
     question: string,
     questionId: number,
-    rows: any[],
+    answers: any[],
     setNewAnswers: any
     project: string | null,
     patientId: number | null
 };
 
 const OpenAnswerInput : FC<Props> = ({
- questionId, question, setNewAnswers, rows, project, patientId,
+ questionId, question, setNewAnswers, answers, project, patientId,
 }) => {
     const [userAnswer, setUserAnswer] = useState('');
 
     useEffect(() => {
-      if (rows.some((entry) => entry.questionID === questionId)) {
-        setNewAnswers([...rows.filter((entry) => entry.questionID !== questionId),
+      if (answers.some((entry) => entry.questionID === questionId)) {
+        setNewAnswers([...answers.filter((entry) => entry.questionID !== questionId),
           {
           patientID: patientId, project, questionID: questionId, answer: [userAnswer],
         },
       ]);
       } else {
-        setNewAnswers([...rows, {
+        setNewAnswers([...answers, {
           patientID: patientId, project, questionID: questionId, answer: [userAnswer],
         }]);
       }

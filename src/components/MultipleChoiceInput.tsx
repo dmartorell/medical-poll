@@ -11,26 +11,26 @@ type Props = {
     choices: {
         choices1: string[],
     },
-    rows: any[],
+    answers: any[],
     setNewAnswers: any
     project: string | null,
     patientId: number | null
 };
 
 const MultipleChoiceInput: FC<Props> = ({
- questionId, question, choices, setNewAnswers, rows, project, patientId,
+ questionId, question, choices, setNewAnswers, answers, project, patientId,
  }) => {
     const { choices1 } = choices;
 
     const handleAnswerChange = ({ target }: any) => {
-      if (rows.some((entry) => entry.questionID === questionId)) {
-        setNewAnswers([...rows.filter((entry) => entry.questionID !== questionId),
+      if (answers.some((entry) => entry.questionID === questionId)) {
+        setNewAnswers([...answers.filter((entry) => entry.questionID !== questionId),
           {
           patientID: patientId, project, questionID: questionId, answer: [target.value],
         },
       ]);
       } else {
-        setNewAnswers([...rows, {
+        setNewAnswers([...answers, {
           patientID: patientId, project, questionID: questionId, answer: [target.value],
         }]);
       }

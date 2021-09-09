@@ -12,14 +12,14 @@ type Props = {
       choices2?: string[] | null,
 
     },
-  rows: any[],
+  answers: any[],
   setNewAnswers: any
   project: string | null,
   patientId: number | null
 };
 
 const DobleChoiceInput: FC<Props> = ({
- question, questionId, choices, setNewAnswers, rows, project, patientId,
+ question, questionId, choices, setNewAnswers, answers, project, patientId,
 }) => {
   const [frecuencia, setFrecuencia] = useState('');
   const [gravedad, setGravedad] = useState('');
@@ -37,14 +37,14 @@ const DobleChoiceInput: FC<Props> = ({
 };
 
 useEffect(() => {
-  if (rows.some((entry) => entry.questionID === questionId)) {
-    setNewAnswers([...rows.filter((entry) => entry.questionID !== questionId),
+  if (answers.some((entry) => entry.questionID === questionId)) {
+    setNewAnswers([...answers.filter((entry) => entry.questionID !== questionId),
       {
       patientID: patientId, project, questionID: questionId, answer: [frecuencia, gravedad],
     },
   ]);
   } else {
-    setNewAnswers([...rows, {
+    setNewAnswers([...answers, {
       patientID: patientId, project, questionID: questionId, answer: [frecuencia, gravedad],
     }]);
   }
@@ -136,7 +136,6 @@ return (
         </HStack>
       </HStack>
     </Box>
-
   </>
 
 );

@@ -10,14 +10,14 @@ import OpenAnswerInput from './OpenAnswerInput';
 
 type Props = {
   questions: iQuestion[] | null,
-  rows: any[],
-  setRows: any,
+  answers: any[],
+  setAnswers: any,
   project: string | null,
   patientId: number | null
 };
 
 const QuestionContent: FC<Props> = ({
- questions, rows, setRows, project, patientId,
+ questions, answers, setAnswers, project, patientId,
 }) => (
   <VStack spacing={{ sm: 3, lg: 5 }}>
     {
@@ -34,8 +34,8 @@ const QuestionContent: FC<Props> = ({
               question={question}
               questionId={questionId}
               choices={given_answer}
-              rows={rows}
-              setNewAnswers={setRows}
+              answers={answers}
+              setNewAnswers={setAnswers}
               project={project}
               patientId={patientId}
             />
@@ -47,8 +47,8 @@ const QuestionContent: FC<Props> = ({
               question={question}
               questionId={questionId}
               choices={given_answer}
-              rows={rows}
-              setNewAnswers={setRows}
+              answers={answers}
+              setNewAnswers={setAnswers}
               project={project}
               patientId={patientId}
             />
@@ -59,8 +59,8 @@ const QuestionContent: FC<Props> = ({
               key={question}
               question={question}
               questionId={questionId}
-              rows={rows}
-              setNewAnswers={setRows}
+              answers={answers}
+              setNewAnswers={setAnswers}
               project={project}
               patientId={patientId}
             />

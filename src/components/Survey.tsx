@@ -20,7 +20,9 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
     const [blockNumber, setBlockNumber] = useState(1);
     const [questions, setQuestions] = useState(null);
     const [project, setProject] = useState(null);
-    const [rowsToInsertToDb, setRowsToInsertToDb] = useState([]);
+    const [answersToInsertToDb, setAnswersToInsertToDb] = useState([]);
+    // const [sumToInsertToDb, setsumToInsertToDb] = useState([]);
+
     const toast = useToast();
 
     const questionCard: iQuestionCard = {
@@ -35,7 +37,8 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
       event.preventDefault();
       if (blockNumber === lastBlock) {
         try {
-          postSurveyToDB(rowsToInsertToDb);
+          console.log(answersToInsertToDb);
+          postSurveyToDB(answersToInsertToDb);
           toast({
           title: 'Envío correcto',
           description: 'Su cuestionario ha sido almacenado.',
@@ -61,10 +64,10 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
       .then((res : any) => res.json())
       .then((data : any) => {
           if (data.length) {
-            setProject(data[0].project);
+            setProject(data[0].project_id);
             setQuestions(data);
           } else {
-            console.log('NO HAY QUESTIONS');
+            setQuestions(null);
           }
         });
       }, [blockNumber]);
@@ -80,8 +83,8 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
           <form onSubmit={handleNextBlock}>
             <QuestionContent
               questions={questions}
-              rows={rowsToInsertToDb}
-              setRows={setRowsToInsertToDb}
+              answers={answersToInsertToDb}
+              setAnswers={setAnswersToInsertToDb}
               project={project}
               patientId={patientId}
             />
