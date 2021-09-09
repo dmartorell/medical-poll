@@ -23,7 +23,7 @@ const QuestionContent: FC<Props> = ({
     {
       questions?.map((q) => {
         const {
- question_type, question, given_answer, id: questionId,
+ question_type, question, given_answer, id: questionId, question_category: questionCategory,
 } = q;
         let content;
 
@@ -33,9 +33,10 @@ const QuestionContent: FC<Props> = ({
               key={question}
               question={question}
               questionId={questionId}
+              questionCategory={questionCategory}
               choices={given_answer}
               answers={answers}
-              setNewAnswers={setAnswers}
+              setAnswers={setAnswers}
               project={project}
               patientId={patientId}
             />
@@ -46,9 +47,10 @@ const QuestionContent: FC<Props> = ({
               key={question}
               question={question}
               questionId={questionId}
+              questionCategory={questionCategory}
               choices={given_answer}
               answers={answers}
-              setNewAnswers={setAnswers}
+              setAnswers={setAnswers}
               project={project}
               patientId={patientId}
             />
@@ -59,8 +61,9 @@ const QuestionContent: FC<Props> = ({
               key={question}
               question={question}
               questionId={questionId}
+              questionCategory={questionCategory}
               answers={answers}
-              setNewAnswers={setAnswers}
+              setAnswers={setAnswers}
               project={project}
               patientId={patientId}
             />

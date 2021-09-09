@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 export interface iQuestion {
     question_type: string,
+    question_category: string | null,
     question: string,
     id: number
     given_answer: {

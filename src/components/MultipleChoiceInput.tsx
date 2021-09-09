@@ -8,31 +8,42 @@ import getAnswerValue from '../helpers/getAnswerValue';
 type Props = {
     question: string,
     questionId: number,
+    questionCategory: string | null,
     choices: {
         choices1: string[],
     },
     answers: any[],
-    setNewAnswers: any
+    setAnswers: any
     project: string | null,
     patientId: number | null
 };
 
 const MultipleChoiceInput: FC<Props> = ({
- questionId, question, choices, setNewAnswers, answers, project, patientId,
+ questionId, question, questionCategory, choices, setAnswers, answers, project, patientId,
  }) => {
     const { choices1 } = choices;
 
     const handleAnswerChange = ({ target }: any) => {
       if (answers.some((entry) => entry.questionID === questionId)) {
-        setNewAnswers([...answers.filter((entry) => entry.questionID !== questionId),
+        setAnswers([...answers.filter((entry) => entry.questionID !== questionId),
           {
-          patientID: patientId, project, questionID: questionId, answer: [target.value],
+          patientID: patientId,
+          project,
+          questionID: questionId,
+          question_category: questionCategory,
+          answer: [target.value],
         },
-      ]);
+        ]);
       } else {
-        setNewAnswers([...answers, {
-          patientID: patientId, project, questionID: questionId, answer: [target.value],
-        }]);
+        setAnswers([...answers,
+          {
+            patientID: patientId,
+            project,
+            questionID: questionId,
+            question_category: questionCategory,
+            answer: [target.value],
+          },
+        ]);
       }
     };
 
@@ -60,3 +71,12 @@ const MultipleChoiceInput: FC<Props> = ({
  };
 
 export default MultipleChoiceInput;
+
+/* const [sumToInsertToDb, setsumToInsertToDb] = useState({
+  hadA: 0,
+  hadD: 0,
+  hadT: 0,
+  dtsF: 0,
+  dtsG: 0,
+  dtsT: 0,
+}); */

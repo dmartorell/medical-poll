@@ -7,26 +7,35 @@ type Props = {
     question: string,
     questionId: number,
     answers: any[],
-    setNewAnswers: any
+    setAnswers: any,
+    questionCategory: string | null,
     project: string | null,
     patientId: number | null
 };
 
 const OpenAnswerInput : FC<Props> = ({
- questionId, question, setNewAnswers, answers, project, patientId,
+ questionId, question, setAnswers, answers, project, patientId, questionCategory,
 }) => {
     const [userAnswer, setUserAnswer] = useState('');
 
     useEffect(() => {
       if (answers.some((entry) => entry.questionID === questionId)) {
-        setNewAnswers([...answers.filter((entry) => entry.questionID !== questionId),
+        setAnswers([...answers.filter((entry) => entry.questionID !== questionId),
           {
-          patientID: patientId, project, questionID: questionId, answer: [userAnswer],
+          patientID: patientId,
+          project,
+          question_category: questionCategory,
+          questionID: questionId,
+          answer: [userAnswer],
         },
       ]);
       } else {
-        setNewAnswers([...answers, {
-          patientID: patientId, project, questionID: questionId, answer: [userAnswer],
+        setAnswers([...answers, {
+          patientID: patientId,
+          project,
+          question_category: questionCategory,
+          questionID: questionId,
+          answer: [userAnswer],
         }]);
       }
     }, [userAnswer]);

@@ -7,19 +7,27 @@ import {
 type Props = {
   question: string,
   questionId: number,
+  questionCategory: string | null,
   choices: {
       choices1: string[],
       choices2?: string[] | null,
 
     },
   answers: any[],
-  setNewAnswers: any
+  setAnswers: any
   project: string | null,
   patientId: number | null
 };
 
 const DobleChoiceInput: FC<Props> = ({
- question, questionId, choices, setNewAnswers, answers, project, patientId,
+ question,
+ questionId,
+ questionCategory,
+ choices,
+ setAnswers,
+ answers,
+ project,
+ patientId,
 }) => {
   const [frecuencia, setFrecuencia] = useState('');
   const [gravedad, setGravedad] = useState('');
@@ -38,14 +46,22 @@ const DobleChoiceInput: FC<Props> = ({
 
 useEffect(() => {
   if (answers.some((entry) => entry.questionID === questionId)) {
-    setNewAnswers([...answers.filter((entry) => entry.questionID !== questionId),
+    setAnswers([...answers.filter((entry) => entry.questionID !== questionId),
       {
-      patientID: patientId, project, questionID: questionId, answer: [frecuencia, gravedad],
+        patientID: patientId,
+        project,
+        questionID: questionId,
+        question_category: questionCategory,
+        answer: [frecuencia, gravedad],
     },
   ]);
   } else {
-    setNewAnswers([...answers, {
-      patientID: patientId, project, questionID: questionId, answer: [frecuencia, gravedad],
+    setAnswers([...answers, {
+      patientID: patientId,
+        project,
+        questionID: questionId,
+        question_category: questionCategory,
+        answer: [frecuencia, gravedad],
     }]);
   }
 }, [frecuencia, gravedad]);

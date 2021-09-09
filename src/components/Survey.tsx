@@ -21,7 +21,6 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
     const [questions, setQuestions] = useState(null);
     const [project, setProject] = useState(null);
     const [answersToInsertToDb, setAnswersToInsertToDb] = useState([]);
-    // const [sumToInsertToDb, setsumToInsertToDb] = useState([]);
 
     const toast = useToast();
 
@@ -64,8 +63,9 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
       .then((res : any) => res.json())
       .then((data : any) => {
           if (data.length) {
-            setProject(data[0].project_id);
-            setQuestions(data);
+            const sortedData = data.sort((a: {id: number}, b: {id: number}) => a.id - b.id);
+            setProject(sortedData[0].project_id);
+            setQuestions(sortedData);
           } else {
             setQuestions(null);
           }
