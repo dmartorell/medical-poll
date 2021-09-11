@@ -6,7 +6,8 @@ export interface iQuestion {
     given_answer: {
         choices1: string[],
         choices2?: string[] | null,
-    }
+    },
+    project_id: number
 }
 
 export interface iQuestionCard {

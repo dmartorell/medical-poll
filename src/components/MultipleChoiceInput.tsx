@@ -13,7 +13,7 @@ type Props = {
     },
     answers: any[],
     setNewAnswers: any
-    project: string | null,
+    project: number,
     patientId: number | null
 };
 

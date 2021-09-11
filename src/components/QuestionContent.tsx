@@ -12,18 +12,17 @@ type Props = {
   questions: iQuestion[] | null,
   answers: any[],
   setAnswers: any,
-  project: string | null,
   patientId: number | null
 };
 
 const QuestionContent: FC<Props> = ({
- questions, answers, setAnswers, project, patientId,
+ questions, answers, setAnswers, patientId,
 }) => (
   <VStack spacing={{ sm: 3, lg: 5 }}>
     {
       questions?.map((q) => {
         const {
- question_type, question, given_answer, id: questionId,
+ question_type, question, given_answer, id: questionId, project_id,
 } = q;
         let content;
 
@@ -36,7 +35,7 @@ const QuestionContent: FC<Props> = ({
               choices={given_answer}
               answers={answers}
               setNewAnswers={setAnswers}
-              project={project}
+              project={project_id}
               patientId={patientId}
             />
 );
@@ -49,7 +48,7 @@ const QuestionContent: FC<Props> = ({
               choices={given_answer}
               answers={answers}
               setNewAnswers={setAnswers}
-              project={project}
+              project={project_id}
               patientId={patientId}
             />
 );
@@ -61,7 +60,7 @@ const QuestionContent: FC<Props> = ({
               questionId={questionId}
               answers={answers}
               setNewAnswers={setAnswers}
-              project={project}
+              project={project_id}
               patientId={patientId}
             />
 );

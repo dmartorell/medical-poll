@@ -19,9 +19,8 @@ type Props = {
 const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
     const [blockNumber, setBlockNumber] = useState(1);
     const [questions, setQuestions] = useState(null);
-    const [project, setProject] = useState(null);
     const [answersToInsertToDb, setAnswersToInsertToDb] = useState([]);
-    // const [sumToInsertToDb, setsumToInsertToDb] = useState([]);
+    console.log(answersToInsertToDb);
 
     const toast = useToast();
 
@@ -64,7 +63,6 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
       .then((res : any) => res.json())
       .then((data : any) => {
           if (data.length) {
-            setProject(data[0].project_id);
             setQuestions(data);
           } else {
             setQuestions(null);
@@ -85,7 +83,6 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
               questions={questions}
               answers={answersToInsertToDb}
               setAnswers={setAnswersToInsertToDb}
-              project={project}
               patientId={patientId}
             />
             <HStack p={{ sm: 4, lg: 6 }} justifyContent="center">

@@ -8,7 +8,7 @@ type Props = {
     questionId: number,
     answers: any[],
     setNewAnswers: any
-    project: string | null,
+    project: number
     patientId: number | null
 };
 
@@ -16,6 +16,7 @@ const OpenAnswerInput : FC<Props> = ({
  questionId, question, setNewAnswers, answers, project, patientId,
 }) => {
     const [userAnswer, setUserAnswer] = useState('');
+    console.log({ project });
 
     useEffect(() => {
       if (answers.some((entry) => entry.questionID === questionId)) {
