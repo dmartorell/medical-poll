@@ -36,7 +36,6 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
       event.preventDefault();
       if (blockNumber === lastBlock) {
         try {
-          console.log(answersToInsertToDb);
           postSurveyToDB(answersToInsertToDb);
           toast({
           title: 'Envío correcto',

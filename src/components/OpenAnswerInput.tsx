@@ -9,11 +9,12 @@ type Props = {
     answers: any[],
     setNewAnswers: any
     project: number
-    patientId: number | null
+    patientId: number | null,
+    category: string
 };
 
 const OpenAnswerInput : FC<Props> = ({
- questionId, question, setNewAnswers, answers, project, patientId,
+ questionId, question, setNewAnswers, answers, project, patientId, category,
 }) => {
     const [userAnswer, setUserAnswer] = useState('');
     console.log({ project });
@@ -22,13 +23,23 @@ const OpenAnswerInput : FC<Props> = ({
       if (answers.some((entry) => entry.questionID === questionId)) {
         setNewAnswers([...answers.filter((entry) => entry.questionID !== questionId),
           {
-          patientID: patientId, project, questionID: questionId, answer: [userAnswer],
+          patientID: patientId,
+          project,
+          questionID: questionId,
+          answer: [userAnswer],
+          question_category: category,
         },
       ]);
       } else {
-        setNewAnswers([...answers, {
-          patientID: patientId, project, questionID: questionId, answer: [userAnswer],
-        }]);
+        setNewAnswers([...answers,
+          {
+          patientID: patientId,
+          project,
+          questionID: questionId,
+          answer: [userAnswer],
+          question_category: category,
+        },
+      ]);
       }
     }, [userAnswer]);
 

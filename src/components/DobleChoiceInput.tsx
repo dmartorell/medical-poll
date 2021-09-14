@@ -12,6 +12,7 @@ type Props = {
       choices2?: string[] | null,
 
     },
+  category: string,
   answers: any[],
   setNewAnswers: any
   project: number
@@ -19,7 +20,7 @@ type Props = {
 };
 
 const DobleChoiceInput: FC<Props> = ({
- question, questionId, choices, setNewAnswers, answers, project, patientId,
+ question, questionId, choices, setNewAnswers, answers, project, patientId, category,
 }) => {
   const [frecuencia, setFrecuencia] = useState('');
   const [gravedad, setGravedad] = useState('');
@@ -40,13 +41,23 @@ useEffect(() => {
   if (answers.some((entry) => entry.questionID === questionId)) {
     setNewAnswers([...answers.filter((entry) => entry.questionID !== questionId),
       {
-      patientID: patientId, project, questionID: questionId, answer: [frecuencia, gravedad],
+      patientID: patientId,
+      project,
+      questionID: questionId,
+      answer: [frecuencia, gravedad],
+      question_category: category,
     },
   ]);
   } else {
-    setNewAnswers([...answers, {
-      patientID: patientId, project, questionID: questionId, answer: [frecuencia, gravedad],
-    }]);
+    setNewAnswers([...answers,
+      {
+        patientID: patientId,
+        project,
+        questionID: questionId,
+        answer: [frecuencia, gravedad],
+        question_category: category,
+      },
+    ]);
   }
 }, [frecuencia, gravedad]);
 

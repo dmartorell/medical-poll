@@ -22,7 +22,7 @@ const QuestionContent: FC<Props> = ({
     {
       questions?.map((q) => {
         const {
- question_type, question, given_answer, id: questionId, project_id,
+ question_type, question, given_answer, id: questionId, project_id, question_category: category,
 } = q;
         let content;
 
@@ -37,6 +37,7 @@ const QuestionContent: FC<Props> = ({
               setNewAnswers={setAnswers}
               project={project_id}
               patientId={patientId}
+              category={category}
             />
 );
         } else if (question_type === 'dobleChoice') {
@@ -50,6 +51,7 @@ const QuestionContent: FC<Props> = ({
               setNewAnswers={setAnswers}
               project={project_id}
               patientId={patientId}
+              category={category}
             />
 );
         } else {
@@ -62,6 +64,7 @@ const QuestionContent: FC<Props> = ({
               setNewAnswers={setAnswers}
               project={project_id}
               patientId={patientId}
+              category={category}
             />
 );
         }
