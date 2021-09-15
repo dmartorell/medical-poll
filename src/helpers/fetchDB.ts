@@ -15,7 +15,7 @@ export const postSurveyToDB = (data: any) => {
 
 export const fetchQuestions = (blockNumber: number) : any => {
     try {
-        return fetch(`${apiUrl}/question?question_block=eq.${blockNumber}&select=question_type, id, question, project_id, question_category, given_answer(choices1, choices2)&order=id.asc`, { headers: { apiKey } });
+        return fetch(`${apiUrl}/question?question_block=eq.${blockNumber}&select=question_type, id, hasAscChoicesValues, question, project_id, question_category, given_answer(choices1, choices2)&order=id.asc`, { headers: { apiKey } });
       } catch ({ message }) {
         return console.log(`ERROR${message}`);
       }

@@ -8,7 +8,8 @@ export interface iQuestion {
         choices1: string[],
         choices2?: string[] | null,
     },
-    project_id: number
+    project_id: number,
+    hasAscChoicesValues: boolean
 }
 
 export interface iQuestionCard {

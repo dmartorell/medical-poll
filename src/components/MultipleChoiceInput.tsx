@@ -12,6 +12,7 @@ type Props = {
         choices1: string[],
     },
     category: string,
+    areValuesAsc: boolean,
     answers: any[],
     setNewAnswers: any
     project: number,
@@ -19,10 +20,17 @@ type Props = {
 };
 
 const MultipleChoiceInput: FC<Props> = ({
- questionId, question, choices, setNewAnswers, answers, project, patientId, category,
+ questionId,
+ question,
+ choices,
+ setNewAnswers,
+ answers,
+ project,
+ areValuesAsc,
+ patientId,
+ category,
  }) => {
     const { choices1 } = choices;
-
     const handleAnswerChange = ({ target }: any) => {
       if (answers.some((entry) => entry.questionID === questionId)) {
         setNewAnswers([...answers.filter((entry) => entry.questionID !== questionId),
@@ -58,9 +66,9 @@ const MultipleChoiceInput: FC<Props> = ({
               {
                 choices1?.map(
                 (choice, index) => {
-                    const questionValue: any = category === 'had-a'
-                    ? getAnswerValue({ array: choices1, isDesc: true, index })
-                    : getAnswerValue({ array: choices1, isDesc: false, index });
+                    const questionValue: any = areValuesAsc
+                    ? getAnswerValue({ array: choices1, isDesc: false, index })
+                    : getAnswerValue({ array: choices1, isDesc: true, index });
 
                     return <Radio alignSelf="flex-start" key={choice} value={`${questionValue}`} onChange={handleAnswerChange}>{choice}</Radio>;
                 },

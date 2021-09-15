@@ -22,7 +22,13 @@ const QuestionContent: FC<Props> = ({
     {
       questions?.map((q) => {
         const {
- question_type, question, given_answer, id: questionId, project_id, question_category: category,
+ question_type,
+ question,
+ given_answer,
+ id: questionId,
+ project_id,
+ hasAscChoicesValues,
+ question_category: category,
 } = q;
         let content;
 
@@ -38,6 +44,7 @@ const QuestionContent: FC<Props> = ({
               project={project_id}
               patientId={patientId}
               category={category}
+              areValuesAsc={hasAscChoicesValues}
             />
 );
         } else if (question_type === 'dobleChoice') {
