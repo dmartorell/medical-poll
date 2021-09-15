@@ -58,7 +58,10 @@ const MultipleChoiceInput: FC<Props> = ({
               {
                 choices1?.map(
                 (choice, index) => {
-                    const questionValue: number = getAnswerValue(choices1, index);
+                    const questionValue: any = category === 'had-a'
+                    ? getAnswerValue({ array: choices1, isDesc: true, index })
+                    : getAnswerValue({ array: choices1, isDesc: false, index });
+
                     return <Radio alignSelf="flex-start" key={choice} value={`${questionValue}`} onChange={handleAnswerChange}>{choice}</Radio>;
                 },
                 )

@@ -20,7 +20,6 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
     const [blockNumber, setBlockNumber] = useState(1);
     const [questions, setQuestions] = useState(null);
     const [answersToInsertToDb, setAnswersToInsertToDb] = useState([]);
-    console.log(answersToInsertToDb);
 
     const toast = useToast();
 
