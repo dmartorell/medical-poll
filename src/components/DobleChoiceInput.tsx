@@ -106,7 +106,7 @@ return (
                     onChange={changeHandler}
                     name={`${questionId}frecuencia`}
                   >
-                    {choice}
+                    <Text _hover={{ cursor: 'pointer' }}>{choice}</Text>
                   </Radio>
                 );
               })}
@@ -137,7 +137,7 @@ return (
                     name={`${questionId}gravedad`}
 
                   >
-                    {choice}
+                    <Text _hover={{ cursor: 'pointer' }}>{choice}</Text>
                   </Radio>
                 );
               })}

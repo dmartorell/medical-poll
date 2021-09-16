@@ -70,7 +70,11 @@ const MultipleChoiceInput: FC<Props> = ({
                     ? getAnswerValue({ array: choices1, isDesc: false, index })
                     : getAnswerValue({ array: choices1, isDesc: true, index });
 
-                    return <Radio alignSelf="flex-start" key={choice} value={`${questionValue}`} onChange={handleAnswerChange}>{choice}</Radio>;
+                    return (
+                      <Radio alignSelf="flex-start" key={choice} value={`${questionValue}`} onChange={handleAnswerChange}>
+                        <Text _hover={{ cursor: 'pointer' }}>{choice}</Text>
+                      </Radio>
+);
                 },
                 )
             }

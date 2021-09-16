@@ -17,7 +17,6 @@ const OpenAnswerInput : FC<Props> = ({
  questionId, question, setNewAnswers, answers, project, patientId, category,
 }) => {
     const [userAnswer, setUserAnswer] = useState('');
-    console.log({ project });
 
     useEffect(() => {
       if (answers.some((entry) => entry.questionID === questionId)) {
@@ -50,7 +49,7 @@ const OpenAnswerInput : FC<Props> = ({
         </Text>
         <Textarea
           value={userAnswer}
-          onChange={({ target }) => { setUserAnswer(target.value); }}
+          onChange={({ target }) => { setUserAnswer(target.value.trim() === '' ? '' : target.value); }}
           placeholder="Escriba aquí..."
           size="md"
           borderRadius={0}
