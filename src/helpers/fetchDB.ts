@@ -1,15 +1,15 @@
 const apiKey: any = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const apiUrl: any = import.meta.env.VITE_SUPABASE_URL;
 
-export const postSurveyToDB = (data: any) => {
-      try {
-        return fetch(`${apiUrl}/answer`, {
-          headers: { apiKey, 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-          method: 'POST',
-});
-      } catch ({ message }) {
-        return console.log(message);
+export const postSurveyToDB = async (data: any) => {
+  const response = await fetch(`${apiUrl}/answer`, {
+      headers: { apiKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+      method: 'POST',
+      });
+      if (!response.ok) {
+        const message:string = `Something went wrong: ${response.status}`;
+        throw new Error(message);
       }
 };
 

@@ -44,8 +44,15 @@ const Survey: FC<Props> = ({ patientId, setSurveyIsFinished }) => {
           duration: 4500,
           isClosable: false,
           });
-        } catch {
-          console.log('error');
+        } catch (error:any) {
+          toast({
+            title: 'Error',
+            description: error,
+            status: 'error',
+            position: 'bottom',
+            duration: 4500,
+            isClosable: false,
+            });
         }
         setTimeout(() => {
           setSurveyIsFinished(true);
